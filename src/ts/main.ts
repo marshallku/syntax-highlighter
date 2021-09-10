@@ -5,10 +5,10 @@ import "../css/style.css";
 
 async function initialize() {
     const app = document.getElementById("app");
-    const highlighter = await initializeHighlighter();
+    await initializeHighlighter();
 
     if (!app) return;
 
-    app.append(Editor(highlighter));
+    app.append(Editor());
 }
 initialize();

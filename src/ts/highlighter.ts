@@ -1,6 +1,7 @@
 declare global {
     interface Window {
         shiki: any;
+        highlighter: any;
     }
 }
 
@@ -9,5 +10,5 @@ export default async function initializeHighlighter() {
         theme: "one-dark-pro",
     });
 
-    return highlighter;
+    window.highlighter = highlighter;
 }
