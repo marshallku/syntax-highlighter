@@ -2,6 +2,12 @@ const textarea = document.createElement("textarea");
 const output = document.createElement("div");
 let language = "javascript";
 
+function copy() {
+    navigator.clipboard.writeText(
+        window.highlighter.codeToHtml(textarea.value, language)
+    );
+}
+
 function highlightSyntax() {
     output.innerHTML = window.highlighter.codeToHtml(textarea.value, language);
 }
@@ -31,6 +37,8 @@ function initializeEditor() {
     textarea.addEventListener("keyup", highlightSyntax);
     textarea.addEventListener("change", highlightSyntax);
     textarea.addEventListener("keydown", handleKeyDown);
+    textarea.addEventListener("paste", copy);
+    textarea.addEventListener("copy", copy);
 }
 
 function SelectLanguage() {
@@ -189,8 +197,8 @@ function CopyButton() {
 
     button.classList.add("copy");
 
-    svg.setAttribute("width", "1rem");
-    svg.setAttribute("height", "1rem");
+    svg.setAttribute("width", "1.5rem");
+    svg.setAttribute("height", "1.5rem");
     svg.setAttribute("viewBox", "0 0 24 24");
 
     path.setAttribute(
@@ -201,11 +209,7 @@ function CopyButton() {
     svg.append(path);
     button.append(svg);
 
-    button.addEventListener("click", () => {
-        navigator.clipboard.writeText(
-            window.highlighter.codeToHtml(textarea.value, language)
-        );
-    });
+    button.addEventListener("click", copy);
 
     return button;
 }
@@ -230,10 +234,10 @@ export default function App() {
     editorContainer.classList.add("editor");
     editorContainerInner.classList.add("editor__inner");
 
-    editorContainerInner.append(output, textarea, CopyButton());
+    editorContainerInner.append(output, textarea);
     editorContainer.append(editorContainerInner);
 
-    fragment.append(selectionContainer, editorContainer);
+    fragment.append(selectionContainer, editorContainer, CopyButton());
 
     return fragment;
 }

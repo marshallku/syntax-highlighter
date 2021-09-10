@@ -24,6 +24,10 @@ a {
     font-weight: bold;
 }
 
+.header__desc--small {
+    font-size: 0.8rem;
+}
+
 /* Editor */
 .editor,
 .language-selector {
@@ -91,9 +95,13 @@ a {
 
 /* Copy button */
 .copy {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
     cursor: pointer;
 }
 
