@@ -30,6 +30,43 @@
             Made with <span role="img" aria-label="heart">💜</span> by
             <a href="https://marshall-ku.com/">Marshall K</a>
         </footer>
+        <div class="loader">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 200 200"
+                xml:space="preserve"
+                width="200"
+                height="200"
+            >
+                <g>
+                    <circle
+                        cx="100"
+                        cy="100"
+                        r="80"
+                        stroke="#f1718c"
+                        stroke-width="10"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <animateTransform
+                        attributeName="transform"
+                        repeatCount="indefinite"
+                        dur="1s"
+                        type="rotate"
+                        from="360 100 100"
+                        to="0 100 100"
+                        additive="sum"
+                    />
+                    <animate
+                        attributeName="stroke-dasharray"
+                        repeatCount="indefinite"
+                        dur="2s"
+                        values="470;251;470"
+                        keyTimes="0;0.5;1"
+                    />
+                </g>
+            </svg>
+        </div>
         <script defer src="https://unpkg.com/shiki"></script>
         <script defer src="./dist/main.js"></script>
     </body>

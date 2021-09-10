@@ -9,6 +9,25 @@ a {
     color: #55b1ff;
 }
 
+/* Loader */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: #121212;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.loader.loader--hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* Header */
 .header,
 .footer {
