@@ -33,7 +33,6 @@ a {
 .language-selector {
     max-width: 860px;
     margin: 2rem auto;
-    overflow: auto;
 }
 
 .language-selector > select {
@@ -44,6 +43,12 @@ a {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     border: none;
+}
+
+.editor,
+.editor__inner,
+.editor__inner > textarea {
+    overflow: hidden;
 }
 
 .editor__inner {
