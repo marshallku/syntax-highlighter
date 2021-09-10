@@ -181,7 +181,7 @@ function SelectLanguage() {
     return select;
 }
 
-export default function Editor() {
+export default function App() {
     const fragment = document.createDocumentFragment();
     const selectionContainer = document.createElement("div");
     const selectionTitle = document.createElement("span");

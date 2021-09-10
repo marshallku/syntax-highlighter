@@ -1,14 +1,14 @@
 import initializeHighlighter from "./highlighter";
-import Editor from "./editor";
+import App from "./app";
 import "../css/reset.css";
 import "../css/style.css";
 
 async function initialize() {
-    const app = document.getElementById("app");
+    const root = document.getElementById("root");
     await initializeHighlighter();
 
-    if (!app) return;
+    if (!root) return;
 
-    app.append(Editor());
+    root.append(App());
 }
 initialize();
