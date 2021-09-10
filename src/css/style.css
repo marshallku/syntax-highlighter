@@ -1,0 +1,53 @@
+.editor {
+    max-width: 860px;
+    max-height: calc(17rem + 20px);
+    overflow: auto;
+}
+
+.editor__inner {
+    position: relative;
+    line-height: 1.7;
+    overflow: hidden;
+}
+
+.editor__inner > :is(div, textarea),
+.editor__inner > div > pre {
+    font-family: "Source Code Pro", "Nanum Gothic Coding" monospace;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    border: 0px;
+    line-height: inherit;
+    tab-size: inherit;
+    text-indent: inherit;
+    text-rendering: inherit;
+    text-transform: inherit;
+    white-space: pre-wrap;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+.editor__inner > textarea,
+.editor__inner > div > pre {
+    padding: 10px;
+}
+
+.editor__inner > textarea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #f1f1f1;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-fill-color: transparent;
+    resize: none;
+}
+
+.editor__inner > div {
+    position: relative;
+    pointer-events: none;
+}
+
+.editor__inner > div .line:empty {
+    display: inline-block;
+}
