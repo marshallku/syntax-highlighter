@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Syntax Highlighter</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="stylesheet" href="./dist/main.css" />
         <link
@@ -13,7 +13,19 @@
         />
     </head>
     <body>
+        <header class="header">
+            <h1 class="header__title">Syntax Highlighter</h1>
+            <p class="header__desc">
+                Uses
+                <a href="https://github.com/shikijs/shiki">Shiki</a>
+                to highlight syntax
+            </p>
+        </header>
         <div id="app"></div>
+        <footer class="footer">
+            Made with <span role="img" aria-label="heart">💜</span> by
+            <a href="https://marshall-ku.com/">Marshall K</a>
+        </footer>
         <script defer src="https://unpkg.com/shiki"></script>
         <script defer src="./dist/main.js"></script>
     </body>

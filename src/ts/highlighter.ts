@@ -9,7 +9,5 @@ export default async function initializeHighlighter() {
         theme: "one-dark-pro",
     });
 
-    console.log(highlighter);
-
     return highlighter;
 }

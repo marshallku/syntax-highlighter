@@ -1,6 +1,33 @@
+html,
+body {
+    background: #121212;
+    color: #bbb;
+}
+
+a {
+    color: #55b1ff;
+}
+
+/* Header */
+.header,
+.footer {
+    font-family: "Source Code Pro", "Nanum Gothic Coding" monospace;
+    max-width: 860px;
+    margin: 2rem auto;
+    padding: 10px;
+    text-align: center;
+    line-height: 2;
+}
+
+.header__title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Editor */
 .editor {
     max-width: 860px;
-    max-height: calc(17rem + 20px);
+    margin: 2rem auto;
     overflow: auto;
 }
 

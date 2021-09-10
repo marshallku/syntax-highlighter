@@ -54,6 +54,7 @@ video {
     outline: 0;
     color: inherit;
     box-sizing: border-box;
+    text-decoration: none;
 }
 article,
 aside,
