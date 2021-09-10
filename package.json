@@ -1,15 +1,25 @@
 {
     "name": "syntax-highlighter",
     "version": "1.0.0",
-    "description": "",
+    "description": "online syntax highlighter",
     "main": "./src/ts/main.ts",
     "scripts": {
         "build": "npx webpack --mode='production'",
         "devBuild": "npx webpack --mode='development'"
     },
-    "keywords": [],
+    "keywords": [
+        "syntax highlighter"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/marshall-ku/syntax-highlighter.git"
+    },
     "author": "Marshall K",
-    "license": "ISC",
+    "license": "Beerware",
+    "bugs": {
+        "url": "https://github.com/marshall-ku/syntax-highlighter/issues"
+    },
+    "homepage": "https://github.com/marshall-ku/syntax-highlighter#readme",
     "devDependencies": {
         "@types/node": "^16.3.1",
         "css-loader": "^6.2.0",
