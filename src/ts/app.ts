@@ -32,6 +32,9 @@ function initializeEditor() {
         }
     };
 
+    textarea.autocapitalize = "off";
+    textarea.spellcheck = false;
+    textarea.autocomplete = "off";
     textarea.value = `function main() {\n  console.log("hello world!");\n}`;
     highlightSyntax();
     textarea.addEventListener("keyup", highlightSyntax);
