@@ -5,11 +5,30 @@ function initializeEditor(highlighter: any) {
     const handleChange = () => {
         output.innerHTML = highlighter.codeToHtml(textarea.value, "js");
     };
+    const handleKeyDown = (event: KeyboardEvent) => {
+        const { code } = event;
 
-    textarea.value = `function main() {\n    console.log("hello world!");\n}`;
+        if (code === "Tab") {
+            event.preventDefault();
+
+            const currentStartPosition = textarea.selectionStart;
+            const currentEndPosition = textarea.selectionEnd;
+            const currentValue = textarea.value;
+
+            textarea.value = `${currentValue.slice(
+                0,
+                currentStartPosition
+            )}  ${currentValue.slice(currentStartPosition)}`;
+            textarea.selectionEnd = currentEndPosition + 2;
+            handleChange();
+        }
+    };
+
+    textarea.value = `function main() {\n  console.log("hello world!");\n}`;
     handleChange();
     textarea.addEventListener("keyup", handleChange);
     textarea.addEventListener("change", handleChange);
+    textarea.addEventListener("keydown", handleKeyDown);
 }
 
 export default function Editor(highlighter: any) {
