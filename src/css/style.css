@@ -88,3 +88,15 @@ a {
 .editor__inner > div .line:empty {
     display: inline-block;
 }
+
+/* Copy button */
+.copy {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.copy > svg {
+    fill: #f1f1f1;
+}

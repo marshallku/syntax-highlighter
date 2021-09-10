@@ -181,6 +181,35 @@ function SelectLanguage() {
     return select;
 }
 
+function CopyButton() {
+    // <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+    const button = document.createElement("button");
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+    button.classList.add("copy");
+
+    svg.setAttribute("width", "1rem");
+    svg.setAttribute("height", "1rem");
+    svg.setAttribute("viewBox", "0 0 24 24");
+
+    path.setAttribute(
+        "d",
+        "M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+    );
+
+    svg.append(path);
+    button.append(svg);
+
+    button.addEventListener("click", () => {
+        navigator.clipboard.writeText(
+            window.highlighter.codeToHtml(textarea.value, language)
+        );
+    });
+
+    return button;
+}
+
 export default function App() {
     const fragment = document.createDocumentFragment();
     const selectionContainer = document.createElement("div");
@@ -201,7 +230,7 @@ export default function App() {
     editorContainer.classList.add("editor");
     editorContainerInner.classList.add("editor__inner");
 
-    editorContainerInner.append(output, textarea);
+    editorContainerInner.append(output, textarea, CopyButton());
     editorContainer.append(editorContainerInner);
 
     fragment.append(selectionContainer, editorContainer);
