@@ -1,4 +1,4 @@
-import initializeHighlighter from "./highlighter";
+import { initializeHighlighter } from "./highlighter";
 import App from "./app";
 import "../css/reset.css";
 import "../css/style.css";

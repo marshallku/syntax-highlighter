@@ -1,3 +1,6 @@
+import { highlightSyntax } from "./app";
+let theme = "one-dark-pro";
+
 declare global {
     interface Window {
         shiki: any;
@@ -5,10 +8,21 @@ declare global {
     }
 }
 
-export default async function initializeHighlighter() {
+export async function initializeHighlighter() {
     const highlighter = await window.shiki.getHighlighter({
-        theme: "one-dark-pro",
+        theme,
     });
 
     window.highlighter = highlighter;
+}
+
+export async function updateHighlighterTheme(newTheme: string) {
+    if (newTheme === theme) return;
+
+    const highlighter = await window.shiki.getHighlighter({
+        theme: newTheme,
+    });
+
+    window.highlighter = highlighter;
+    highlightSyntax();
 }

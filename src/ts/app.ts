@@ -1,3 +1,5 @@
+import { updateHighlighterTheme } from "./highlighter";
+
 const textarea = document.createElement("textarea");
 const output = document.createElement("div");
 let language = "javascript";
@@ -8,7 +10,7 @@ function copy() {
     );
 }
 
-function highlightSyntax() {
+export function highlightSyntax() {
     output.innerHTML = window.highlighter.codeToHtml(textarea.value, language);
 }
 
@@ -42,6 +44,55 @@ function initializeEditor() {
     textarea.addEventListener("keydown", handleKeyDown);
     textarea.addEventListener("paste", copy);
     textarea.addEventListener("copy", copy);
+}
+
+function SelectTheme() {
+    const select = document.createElement("select");
+    const themes = [
+        "css-variables",
+        "dark-plus",
+        "dracula-soft",
+        "dracula",
+        "github-dark-dimmed",
+        "github-dark",
+        "github-light",
+        "light-plus",
+        "material-darker",
+        "material-default",
+        "material-lighter",
+        "material-ocean",
+        "material-palenight",
+        "min-dark",
+        "min-light",
+        "monokai",
+        "nord",
+        "one-dark-pro",
+        "poimandres",
+        "slack-dark",
+        "slack-ochin",
+        "solarized-dark",
+        "solarized-light",
+        "vitesse-dark",
+        "vitesse-light",
+    ];
+    const Option = (value: string) => {
+        const option = document.createElement("option");
+
+        option.innerText = value;
+        option.selected = value === "one-dark-pro";
+
+        return option;
+    };
+
+    themes.forEach((theme) => {
+        select.append(Option(theme));
+    });
+
+    select.addEventListener("change", () => {
+        updateHighlighterTheme(themes[select.selectedIndex]);
+    });
+
+    return select;
 }
 
 function SelectLanguage() {
@@ -219,17 +270,22 @@ function CopyButton() {
 
 export default function App() {
     const fragment = document.createDocumentFragment();
-    const selectionContainer = document.createElement("div");
-    const selectionTitle = document.createElement("span");
+    const themeSelectionContainer = document.createElement("div");
+    const themeSelectionTitle = document.createElement("span");
+    const languageSelectionContainer = document.createElement("div");
+    const languageSelectionTitle = document.createElement("span");
     const editorContainer = document.createElement("div");
     const editorContainerInner = document.createElement("div");
 
+    // Theme Selector
+    themeSelectionContainer.classList.add("select-container");
+    themeSelectionTitle.innerText = "Theme : ";
+    themeSelectionContainer.append(themeSelectionTitle, SelectTheme());
+
     // Language Selector
-    selectionContainer.classList.add("language-selector");
-
-    selectionTitle.innerText = "Language : ";
-
-    selectionContainer.append(selectionTitle, SelectLanguage());
+    languageSelectionContainer.classList.add("select-container");
+    languageSelectionTitle.innerText = "Language : ";
+    languageSelectionContainer.append(languageSelectionTitle, SelectLanguage());
 
     // Editor
     initializeEditor();
@@ -240,7 +296,12 @@ export default function App() {
     editorContainerInner.append(output, textarea);
     editorContainer.append(editorContainerInner);
 
-    fragment.append(selectionContainer, editorContainer, CopyButton());
+    fragment.append(
+        themeSelectionContainer,
+        languageSelectionContainer,
+        editorContainer,
+        CopyButton()
+    );
 
     return fragment;
 }
