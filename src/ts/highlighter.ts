@@ -23,6 +23,8 @@ export async function updateHighlighterTheme(newTheme: string) {
         theme: newTheme,
     });
 
+    theme = newTheme;
+
     window.highlighter = highlighter;
     highlightSyntax();
 }
