@@ -1,5 +1,5 @@
-import { initializeHighlighter } from "./highlighter";
-import App from "./app";
+import { initializeHighlighter } from "./utils/highlighter";
+import App from "./components/App";
 import "../css/reset.css";
 import "../css/style.css";
 
@@ -18,4 +18,5 @@ async function initialize() {
     });
     loader.classList.add("loader--hide");
 }
+
 initialize();
