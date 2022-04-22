@@ -1,4 +1,4 @@
-import { updateHighlighterTheme } from "./highlighter";
+import { getAvailableThemes, updateHighlighterTheme } from "./highlighter";
 
 const textarea = document.createElement("textarea");
 const output = document.createElement("div");
@@ -48,33 +48,7 @@ function initializeEditor() {
 
 function SelectTheme() {
     const select = document.createElement("select");
-    const themes = [
-        "css-variables",
-        "dark-plus",
-        "dracula-soft",
-        "dracula",
-        "github-dark-dimmed",
-        "github-dark",
-        "github-light",
-        "light-plus",
-        "material-darker",
-        "material-default",
-        "material-lighter",
-        "material-ocean",
-        "material-palenight",
-        "min-dark",
-        "min-light",
-        "monokai",
-        "nord",
-        "one-dark-pro",
-        "poimandres",
-        "slack-dark",
-        "slack-ochin",
-        "solarized-dark",
-        "solarized-light",
-        "vitesse-dark",
-        "vitesse-light",
-    ];
+    const themes = getAvailableThemes();
     const Option = (value: string) => {
         const option = document.createElement("option");
 

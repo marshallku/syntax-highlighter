@@ -28,3 +28,7 @@ export async function updateHighlighterTheme(newTheme: string) {
     window.highlighter = highlighter;
     highlightSyntax();
 }
+
+export function getAvailableThemes(): string[] {
+    return window.shiki.BUNDLED_THEMES;
+}
