@@ -32,3 +32,7 @@ export async function updateHighlighterTheme(newTheme: string) {
 export function getAvailableThemes(): string[] {
     return window.shiki.BUNDLED_THEMES;
 }
+
+export function getAvailableLanguages(): string[] {
+    return window.shiki.BUNDLED_LANGUAGES.map(({ id }: { id: string }) => id);
+}
