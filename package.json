@@ -23,6 +23,7 @@
     "homepage": "https://github.com/marshall-ku/syntax-highlighter#readme",
     "devDependencies": {
         "@types/node": "^16.3.1",
+        "gh-pages": "^3.2.3",
         "typescript": "^4.1.2",
         "vite": "^2.9.5"
     }

@@ -1,0 +1,26 @@
+name: Deploy
+
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+    deploy:
+        name: Build and Deploy
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: "16"
+                  check-latest: true
+                  registry-url: https://registry.npmjs.org/
+            - name: Install dependencies
+              run: npm ci
+            - name: Build
+              run: npm run build
+            - name: Deploy with gh-pages
+              run: |
+                  git config --global user.name github-actions
+                  git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}
+                  npx gh-pages -d dist
