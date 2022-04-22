@@ -1,4 +1,4 @@
-import { initializeHighlighter } from "./utils/highlighter";
+import { highlight, initializeHighlighter } from "./utils/highlighter";
 import App from "./components/App";
 import "../css/reset.css";
 import "../css/style.css";
@@ -11,6 +11,7 @@ async function initialize() {
     if (!root) return;
 
     root.append(App());
+    highlight();
 
     if (!loader) return;
     loader.addEventListener("transitionend", () => {

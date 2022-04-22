@@ -1,3 +1,4 @@
+import el from "../utils/el";
 import {
     data,
     getAvailableLanguages,
@@ -6,25 +7,31 @@ import {
 } from "../utils/highlighter";
 
 export default function SelectLanguage() {
-    const select = document.createElement("select");
     const languages = getAvailableLanguages();
-    const Option = (value: string) => {
-        const option = document.createElement("option");
+    const Option = (value: string) =>
+        el("option", { selected: value === data.language }, value);
 
-        option.innerText = value;
-        option.selected = value === data.language;
+    return el(
+        "div",
+        {
+            className: "select-container",
+        },
+        el("span", {}, "Languages: "),
+        el(
+            "select",
+            {
+                events: {
+                    change: ({ target }) => {
+                        if (!(target instanceof HTMLSelectElement)) {
+                            return;
+                        }
 
-        return option;
-    };
-
-    languages.forEach((language) => {
-        select.append(Option(language));
-    });
-
-    select.addEventListener("change", () => {
-        setLanguage(languages[select.selectedIndex]);
-        highlight();
-    });
-
-    return select;
+                        setLanguage(languages[target.selectedIndex]);
+                        highlight();
+                    },
+                },
+            },
+            ...languages.map((language) => Option(language))
+        )
+    );
 }

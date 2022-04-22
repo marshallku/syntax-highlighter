@@ -1,47 +1,76 @@
+import el from "../utils/el";
 import { data, highlight, highlightAndCopy } from "../utils/highlighter";
 
 export default function Editor() {
-    const textarea = document.createElement("textarea");
-    const handleKeyDown = (event: KeyboardEvent) => {
-        const { code } = event;
+    return el("textarea", {
+        autocapitalize: "off",
+        spellcheck: false,
+        autocomplete: "off",
+        value: data.code,
+        events: {
+            keyup: (event) => {
+                const { target } = event;
 
-        if (code === "Tab") {
-            event.preventDefault();
+                if (!(target instanceof HTMLTextAreaElement)) {
+                    return;
+                }
 
-            const currentStartPosition = textarea.selectionStart;
-            const currentEndPosition = textarea.selectionEnd;
-            const currentValue = textarea.value;
+                data.code = target.value;
+                highlight();
+            },
+            change: (event) => {
+                const { target } = event;
 
-            textarea.value = `${currentValue.slice(
-                0,
-                currentStartPosition
-            )}  ${currentValue.slice(currentStartPosition)}`;
-            textarea.selectionEnd = currentEndPosition + 2;
-            highlight();
-        }
-    };
-    const updateData = () => {
-        data.code = textarea.value;
-    };
-    const updateAndHighlight = () => {
-        updateData();
-        highlight();
-    };
-    const updateAndHighlightAndCopy = () => {
-        updateData();
-        highlightAndCopy();
-    };
+                if (!(target instanceof HTMLTextAreaElement)) {
+                    return;
+                }
 
-    textarea.autocapitalize = "off";
-    textarea.spellcheck = false;
-    textarea.autocomplete = "off";
-    textarea.value = data.code;
-    highlight();
-    textarea.addEventListener("keyup", updateAndHighlight);
-    textarea.addEventListener("change", updateAndHighlight);
-    textarea.addEventListener("keydown", handleKeyDown);
-    textarea.addEventListener("paste", updateAndHighlightAndCopy);
-    textarea.addEventListener("copy", updateAndHighlightAndCopy);
+                data.code = target.value;
+                highlight();
+            },
+            keydown: (event) => {
+                const { code, target } = event as KeyboardEvent;
 
-    return textarea;
+                if (
+                    code !== "Tab" ||
+                    !(target instanceof HTMLTextAreaElement)
+                ) {
+                    return;
+                }
+
+                event.preventDefault();
+
+                const currentStartPosition = target.selectionStart;
+                const currentEndPosition = target.selectionEnd;
+                const currentValue = target.value;
+
+                target.value = `${currentValue.slice(
+                    0,
+                    currentStartPosition
+                )}  ${currentValue.slice(currentStartPosition)}`;
+                target.selectionEnd = currentEndPosition + 2;
+                highlight();
+            },
+            paste: (event) => {
+                const { target } = event;
+
+                if (!(target instanceof HTMLTextAreaElement)) {
+                    return;
+                }
+
+                data.code = target.value;
+                highlightAndCopy;
+            },
+            copy: (event) => {
+                const { target } = event;
+
+                if (!(target instanceof HTMLTextAreaElement)) {
+                    return;
+                }
+
+                data.code = target.value;
+                highlightAndCopy;
+            },
+        },
+    });
 }

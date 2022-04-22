@@ -1,24 +1,31 @@
+import el from "../utils/el";
 import { data, getAvailableThemes, setTheme } from "../utils/highlighter";
 
 export default function SelectTheme() {
-    const select = document.createElement("select");
     const themes = getAvailableThemes();
-    const Option = (value: string) => {
-        const option = document.createElement("option");
+    const Option = (value: string) =>
+        el("option", { selected: value === data.theme }, value);
 
-        option.innerText = value;
-        option.selected = value === data.theme;
+    return el(
+        "div",
+        {
+            className: "select-container",
+        },
+        el("span", {}, "Theme: "),
+        el(
+            "select",
+            {
+                events: {
+                    change: ({ target }) => {
+                        if (!(target instanceof HTMLSelectElement)) {
+                            return;
+                        }
 
-        return option;
-    };
-
-    themes.forEach((theme) => {
-        select.append(Option(theme));
-    });
-
-    select.addEventListener("change", () => {
-        setTheme(themes[select.selectedIndex]);
-    });
-
-    return select;
+                        setTheme(themes[target.selectedIndex]);
+                    },
+                },
+            },
+            ...themes.map((theme) => Option(theme))
+        )
+    );
 }

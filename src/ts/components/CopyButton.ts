@@ -1,11 +1,9 @@
+import el from "../utils/el";
 import { copyHighlightedResult } from "../utils/highlighter";
 
 export default function CopyButton() {
-    const button = document.createElement("button");
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-
-    button.classList.add("copy");
 
     svg.setAttribute("width", "1.5rem");
     svg.setAttribute("height", "1.5rem");
@@ -17,11 +15,17 @@ export default function CopyButton() {
     );
 
     svg.append(path);
-    button.append(svg);
 
-    button.addEventListener("click", () => {
-        copyHighlightedResult();
-    });
-
-    return button;
+    return el(
+        "button",
+        {
+            className: "copy",
+            events: {
+                click: () => {
+                    copyHighlightedResult();
+                },
+            },
+        },
+        svg
+    );
 }
