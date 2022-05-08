@@ -11,11 +11,9 @@ export const highlighter: HighlighterData = {
 };
 
 export async function initializeHighlighter() {
-    const shiki = await window.shiki.getHighlighter({
+    highlighter.highlighter = await window.shiki.getHighlighter({
         theme: highlighter.theme,
     });
-
-    window.highlighter = shiki;
 }
 
 export function getAvailableThemes(): string[] {
@@ -27,7 +25,7 @@ export function getAvailableLanguages(): string[] {
 }
 
 export function highlight() {
-    const highlighted = window.highlighter?.codeToHtml(
+    const highlighted = highlighter.highlighter?.codeToHtml(
         highlighter.code,
         highlighter.language
     );
@@ -50,7 +48,10 @@ export function copyHighlightedResult(value?: string) {
     }
 
     copy(
-        window.highlighter?.codeToHtml(highlighter.code, highlighter.language)
+        highlighter.highlighter?.codeToHtml(
+            highlighter.code,
+            highlighter.language
+        )
     );
 }
 
@@ -64,12 +65,10 @@ export function setLanguage(newLanguage: string) {
 export async function setTheme(newTheme: string) {
     if (newTheme === highlighter.theme) return;
 
-    const shiki = await window.shiki.getHighlighter({
+    highlighter.theme = newTheme;
+    highlighter.highlighter = await window.shiki.getHighlighter({
         theme: newTheme,
     });
 
-    highlighter.theme = newTheme;
-
-    window.highlighter = shiki;
     highlight();
 }
