@@ -1,6 +1,6 @@
 import el from "../utils/el";
 import {
-    data,
+    highlighter,
     getAvailableLanguages,
     highlight,
     setLanguage,
@@ -9,7 +9,7 @@ import {
 export default function SelectLanguage() {
     const languages = getAvailableLanguages();
     const Option = (value: string) =>
-        el("option", { selected: value === data.language }, value);
+        el("option", { selected: value === highlighter.language }, value);
 
     return el(
         "div",

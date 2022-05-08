@@ -1,5 +1,5 @@
 import el from "../utils/el";
-import { data, highlight, highlightAndCopy } from "../utils/highlighter";
+import { highlighter, highlight, highlightAndCopy } from "../utils/highlighter";
 
 export default function Editor() {
     const handleChange = (event: Event) => {
@@ -9,7 +9,7 @@ export default function Editor() {
             return;
         }
 
-        data.code = target.value;
+        highlighter.code = target.value;
         highlight();
     };
 
@@ -41,7 +41,7 @@ export default function Editor() {
             return;
         }
 
-        data.code = target.value;
+        highlighter.code = target.value;
         highlightAndCopy();
     };
 
@@ -49,7 +49,7 @@ export default function Editor() {
         autocapitalize: "off",
         spellcheck: false,
         autocomplete: "off",
-        value: data.code,
+        value: highlighter.code,
         events: {
             keyup: handleChange,
             change: handleChange,

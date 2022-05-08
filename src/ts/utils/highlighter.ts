@@ -1,18 +1,21 @@
 import copy from "./copy";
 
-export const data = {
+export const highlighter: HighlighterData = {
     theme: "one-dark-pro",
     language: "javascript",
     code: `function main() {\n  console.log("hello world!");\n}`,
-    outputElement: document.createElement("div"),
+    outputElements: [],
+    addOutputElement(element: HTMLElement) {
+        this.outputElements.push(element);
+    },
 };
 
 export async function initializeHighlighter() {
-    const highlighter = await window.shiki.getHighlighter({
-        theme: data.theme,
+    const shiki = await window.shiki.getHighlighter({
+        theme: highlighter.theme,
     });
 
-    window.highlighter = highlighter;
+    window.highlighter = shiki;
 }
 
 export function getAvailableThemes(): string[] {
@@ -25,11 +28,13 @@ export function getAvailableLanguages(): string[] {
 
 export function highlight() {
     const highlighted = window.highlighter?.codeToHtml(
-        data.code,
-        data.language
+        highlighter.code,
+        highlighter.language
     );
 
-    data.outputElement.innerHTML = highlighted;
+    highlighter.outputElements.forEach((element) => {
+        element.innerHTML = highlighted;
+    });
 
     return highlighted;
 }
@@ -44,25 +49,27 @@ export function copyHighlightedResult(value?: string) {
         return;
     }
 
-    copy(window.highlighter?.codeToHtml(data.code, data.language));
+    copy(
+        window.highlighter?.codeToHtml(highlighter.code, highlighter.language)
+    );
 }
 
 export function setLanguage(newLanguage: string) {
-    if (newLanguage === data.language) return;
+    if (newLanguage === highlighter.language) return;
 
-    data.language = newLanguage;
+    highlighter.language = newLanguage;
     highlight();
 }
 
 export async function setTheme(newTheme: string) {
-    if (newTheme === data.theme) return;
+    if (newTheme === highlighter.theme) return;
 
-    const highlighter = await window.shiki.getHighlighter({
+    const shiki = await window.shiki.getHighlighter({
         theme: newTheme,
     });
 
-    data.theme = newTheme;
+    highlighter.theme = newTheme;
 
-    window.highlighter = highlighter;
+    window.highlighter = shiki;
     highlight();
 }

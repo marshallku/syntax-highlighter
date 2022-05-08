@@ -1,10 +1,14 @@
 import el from "../utils/el";
-import { data, getAvailableThemes, setTheme } from "../utils/highlighter";
+import {
+    highlighter,
+    getAvailableThemes,
+    setTheme,
+} from "../utils/highlighter";
 
 export default function SelectTheme() {
     const themes = getAvailableThemes();
     const Option = (value: string) =>
-        el("option", { selected: value === data.theme }, value);
+        el("option", { selected: value === highlighter.theme }, value);
 
     return el(
         "div",
