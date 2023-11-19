@@ -17,9 +17,13 @@ a {
     display: flex;
     width: 100vw;
     height: 100vh;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: #121212;
+    text-align: center;
+    gap: 16px;
+    line-height: 1.7;
     transition: opacity 0.25s ease-in-out;
 }
 
