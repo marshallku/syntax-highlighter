@@ -1,4 +1,7 @@
-import { compress, decompress } from "lz-string";
+import {
+    compressToEncodedURIComponent,
+    decompressFromEncodedURIComponent,
+} from "lz-string";
 import copy from "./copy";
 import { getQuery, updateQuery } from "./query";
 
@@ -12,7 +15,7 @@ export const highlighter: HighlighterData = {
     theme: query[THEME_QUERY_KEY] || "one-dark-pro",
     language: query[LANGUAGE_QUERY_KEY] || "javascript",
     code: query[CODE_QUERY_KEY]
-        ? decompress(decodeURIComponent(query[CODE_QUERY_KEY]))
+        ? decompressFromEncodedURIComponent(query[CODE_QUERY_KEY])
         : `function main() {\n  console.log("hello world!");\n}`,
     outputElements: [],
     addOutputElement(element: HTMLElement) {
@@ -35,7 +38,10 @@ export function getAvailableLanguages(): string[] {
 }
 
 export function highlight() {
-    updateQuery(CODE_QUERY_KEY, encodeURIComponent(compress(highlighter.code)));
+    updateQuery(
+        CODE_QUERY_KEY,
+        compressToEncodedURIComponent(highlighter.code)
+    );
 
     const highlighted = highlighter.highlighter?.codeToHtml(
         highlighter.code,
