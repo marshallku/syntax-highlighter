@@ -1,8 +1,8 @@
-import el from "../utils/el";
+import crtElt from "crtelt";
 import { highlighter } from "../utils/highlighter";
 
 export default function Output() {
-    const div = el("div");
+    const div = crtElt("div");
 
     highlighter.addOutputElement(div);
 

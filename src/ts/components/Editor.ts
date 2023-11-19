@@ -1,4 +1,4 @@
-import el from "../utils/el";
+import crtElt from "crtelt";
 import { highlighter, highlight, highlightAndCopy } from "../utils/highlighter";
 
 export default function Editor() {
@@ -45,7 +45,7 @@ export default function Editor() {
         highlightAndCopy();
     };
 
-    return el("textarea", {
+    return crtElt("textarea", {
         autocapitalize: "off",
         spellcheck: false,
         autocomplete: "off",

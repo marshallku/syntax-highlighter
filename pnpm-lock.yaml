@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  crtelt:
+    specifier: ^0.3.5
+    version: 0.3.5
+
 devDependencies:
   '@types/node':
     specifier: ^20.9.2
@@ -359,6 +364,10 @@ packages:
   /concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
+
+  /crtelt@0.3.5:
+    resolution: {integrity: sha512-I/YMxlYQ3/CyfRP7m/2JMg8qYNzJ6j9gd6P+8VprmUZSsLylv6Pfl0D0+39PDfyfrPEGOlh3VR3WkjXcQUUfSQ==}
+    dev: false
 
   /email-addresses@5.0.0:
     resolution: {integrity: sha512-4OIPYlA6JXqtVn8zpHpGiI7vE6EQOAg16aGnDMIAlZVinnoZ8208tW1hAbjWydgN/4PLTT9q+O1K6AH/vALJGw==}

@@ -1,4 +1,4 @@
-import el from "../utils/el";
+import crtElt from "crtelt";
 import {
     highlighter,
     getAvailableThemes,
@@ -8,15 +8,15 @@ import {
 export default function SelectTheme() {
     const themes = getAvailableThemes();
     const Option = (value: string) =>
-        el("option", { selected: value === highlighter.theme }, value);
+        crtElt("option", { selected: value === highlighter.theme }, value);
 
-    return el(
+    return crtElt(
         "div",
         {
             className: "select-container",
         },
-        el("span", {}, "Theme: "),
-        el(
+        crtElt("span", {}, "Theme: "),
+        crtElt(
             "select",
             {
                 events: {

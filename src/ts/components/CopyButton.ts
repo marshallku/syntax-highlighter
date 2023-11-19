@@ -1,4 +1,4 @@
-import el from "../utils/el";
+import crtElt from "crtelt";
 import { copyHighlightedResult } from "../utils/highlighter";
 
 export default function CopyButton() {
@@ -16,7 +16,7 @@ export default function CopyButton() {
 
     svg.append(path);
 
-    return el(
+    return crtElt(
         "button",
         {
             className: "copy",

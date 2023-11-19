@@ -1,4 +1,4 @@
-import el from "../utils/el";
+import crtElt from "crtelt";
 import {
     highlighter,
     getAvailableLanguages,
@@ -9,15 +9,15 @@ import {
 export default function SelectLanguage() {
     const languages = getAvailableLanguages();
     const Option = (value: string) =>
-        el("option", { selected: value === highlighter.language }, value);
+        crtElt("option", { selected: value === highlighter.language }, value);
 
-    return el(
+    return crtElt(
         "div",
         {
             className: "select-container",
         },
-        el("span", {}, "Languages: "),
-        el(
+        crtElt("span", {}, "Languages: "),
+        crtElt(
             "select",
             {
                 events: {
